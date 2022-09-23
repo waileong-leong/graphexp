@@ -135,7 +135,7 @@ var graphioGremlin = (function(){
 		let gremlin_query_edges = "edges = " + traversal_source + ".V(nodes).aggregate('node').outE().as('edge').inV().where(within('node')).select('edge').toList();";
         let gremlin_query_edges_no_vars = "edges = " + traversal_source + ".V()"+has_str+".aggregate('node').outE().as('edge').inV().where(within('node')).select('edge').toList();";
         //let gremlin_query_edges_no_vars = "edges = " + traversal_source + ".V()"+has_str+".bothE();";
-		let gremlin_query = 'g = graph.traversal();' + gremlin_query_nodes + gremlin_query_edges + "[nodes,edges]";
+		let gremlin_query = gremlin_query_nodes + gremlin_query_edges + "[nodes,edges]";
 		console.log(gremlin_query);
 
 		// while busy, show we're doing something in the messageArea.
