@@ -181,7 +181,7 @@ var graphioGremlin = (function(){
         if (communication_method == "GraphSON3_4") { 
         	// Version 3.4
             gremlin_query_nodes += ".valueMap().with(WithOptions.tokens)";
-            gremlin_query_nodes += '.fold().inject(' + traversal_source + '.V(' + id + ').valueMap().with(WithOptions.tokens)).unfold()';
+            gremlin_query_nodes += '.fold().inject(' + '__' + '.V(' + id + ').valueMap().with(WithOptions.tokens)).unfold()';
         } else {
         	gremlin_query_nodes += '.fold().inject(' + traversal_source + '.V(' + id + ')).unfold()';
         }
@@ -532,8 +532,12 @@ var graphioGremlin = (function(){
             //console.log(prop_dic)
             for (var key in prop_dic) {
                 if (prop_dic.hasOwnProperty(key)) {
-                    if (data.type == 'vertex') {// Extracting the Vertexproperties (properties of properties for vertices)
-                        var property = prop_dic[key].toString();
+										if (key == "properties") {
+											data_dic.properties = { ...data_dic.properties, ...prop_dic[key]}
+											continue;
+										}
+                    else if (data.type == 'vertex') {// Extracting the Vertexproperties (properties of properties for vertices)
+                        //var property = prop_dic[key].toString();
                         //property['summary'] = get_vertex_prop_in_list(prop_dic[key]).toString();
                         //property = get_vertex_prop_in_list(prop_dic[key]).toString();
                     } else {
