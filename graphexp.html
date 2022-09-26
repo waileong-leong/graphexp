@@ -55,15 +55,15 @@
 				<div class="nav inputs_container_top">
 					<div class="nav input_unit_container">
 						<label for="label_field">Node label:</label>
-						<input name="label_field" id="label_field" value="" />
+						<input name="label_field" id="label_field" value="ACCOUNT" />
 					</div>
 					<div class="nav input_unit_container">
 						<label for="search_field">Node property:</label>
-						<input name="search_field" id="search_field" value="" />
+						<input name="search_field" id="search_field" value="ACCOUNT_KEY" />
 					</div>
 					<div class="nav input_unit_container">
 						<label class="nav input_label" for="search_value">Property value:</label>
-						<input name="search_value" id="search_value" value="" />
+						<input name="search_value" id="search_value" value="X1G2B9SB" />
 					</div>
 					<div class="nav input_unit_container">
 						<label for="search_type">Type of search:</label>
@@ -85,7 +85,14 @@
 				<div class="nav inputs_container_bottom">
 					<div class="nav input_unit_container">
 						<label class="nav input_label" for="edge_filter">Traverse by edge:</label>
-						<input name="edge_filter" id="edge_filter" value="" />
+						<!-- <input name="edge_filter" id="edge_filter" value="" /> -->
+						<select name="edge_filter" id="edge_filter">
+						  <option value="C2A">C2A</option>
+						  <option value="C2C">C2C</option>
+						  <option value="C2A,C2C">C2A+C2C</option>
+						  <option value="TRANSACTIONS">TRANSACTIONS</option>
+						  <option value="">ALL</option>
+						</select>
 					</div>
 					<div class="nav input_unit_container">
 						<label class="nav input_label" for="nbLayers">Nb of layers</label>
@@ -135,7 +142,7 @@
 				<div class="nav inputs_container_top">
 					<div class="nav input_unit_container">
 						<label class="nav input_label" for="server_address">Server Address:</label>
-						<input name="server_address" id="server_address" value="localhost" />
+						<input name="server_address" id="server_address" value="13.0.0.84" />
 					</div>
 					<div class="nav input_unit_container">
 						<label class="nav input_label" for="server_port">Server port:</label>
