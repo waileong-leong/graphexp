@@ -170,13 +170,14 @@ var graphioGremlin = (function(){
 		// Query sent to the server when a node is clicked
 		//
         var edge_filter = $('#edge_filter').val();
+		edge_filter = edge_filter?edge_filter.split(",").map((element) => '"'+element+'"').join(','):''
         var communication_method = $('#communication_method').val();
 		var id = d.id;
 		if (typeof id === 'string' || id instanceof String) { // Add quotes if id is a string (not a number).
 			id = '"'+id+'"';
 		}
 		// Gremlin query
-		var gremlin_query_nodes = 'nodes = ' + traversal_source + '.V('+id+').as("node").both('+(edge_filter?'"'+edge_filter+'"':'')+').as("node").select(all,"node").unfold()'
+		var gremlin_query_nodes = 'nodes = ' + traversal_source + '.V('+id+').as("node").both('+(edge_filter)+').as("node").select(all,"node").unfold()'
         // Variant depending on the Gremlin version
         if (communication_method == "GraphSON3_4") { 
         	// Version 3.4
@@ -191,7 +192,7 @@ var graphioGremlin = (function(){
 		// 'inject' is necessary in case of an isolated node ('both' would lead to an empty answer)
 		console.log('Query for the node and its neigbhors')
 		console.log(gremlin_query_nodes)
-		var gremlin_query_edges = "edges = " + traversal_source + ".V("+id+").bothE("+(edge_filter?"'"+edge_filter+"'":"")+")";
+		var gremlin_query_edges = "edges = " + traversal_source + ".V("+id+").bothE("+(edge_filter)+")";
 		var gremlin_query = gremlin_query_nodes+'\n'+gremlin_query_edges+'\n'+'[nodes.toList(),edges.toList()]'
 		// while busy, show we're doing something in the messageArea.
 		$('#messageArea').html('<h3>(loading)</h3>');
